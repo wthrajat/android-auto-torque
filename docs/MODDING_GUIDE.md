@@ -44,7 +44,7 @@ This guide covers everything you need to know to modify the app, add features, c
 ```bash
 # Fork on GitHub, then clone
 git clone --recurse-submodules https://github.com/YOUR_USERNAME/aa-torque.git
-cd aa-torque
+cd android-auto-torque
 ```
 
 ### Step 2: Change the App Name
@@ -454,8 +454,8 @@ brew install --cask zulu@19
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-19.jdk/Contents/Home
 
 # Clone with submodules
-git clone --recurse-submodules https://github.com/agronick/aa-torque.git
-cd aa-torque
+git clone --recurse-submodules https://github.com/wthrajat/android-auto-torque.git
+cd android-auto-torque
 
 # Create local.properties
 echo "sdk.dir=$HOME/Library/Android/sdk" > local.properties

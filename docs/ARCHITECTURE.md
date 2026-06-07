@@ -20,33 +20,31 @@ This document explains the complete architecture of the AA Torque app, how compo
 
 ## High-Level Overview
 
-AA Torque is an **Android Auto plugin app** that displays real-time vehicle data from an OBD2 adapter on your car's head unit. It's a **companion app to Torque Pro**: it doesn't read OBD2 data directly. Instead, it communicates with Torque Pro via Android's IPC (Inter-Process Communication) system using AIDL (Android Interface Definition Language).
+AA Torque is an Android Auto plugin app that displays real-time vehicle data from an OBD2 adapter on your car's head unit. It's a companion app to Torque Pro: it doesn't read OBD2 data directly. Instead, it communicates with Torque Pro via Android's IPC (Inter-Process Communication) system using AIDL.
 
-```
-┌─────────────────┐     ┌──────────────┐     ┌─────────────────┐
-│   OBD2 Adapter   │◄───►│  Torque Pro  │◄───►│   AA Torque     │
-│  (Bluetooth/USB) │     │  (Main App)  │     │ (This App)      │
-└─────────────────┘     └──────────────┘     └────────┬────────┘
-                                                       │
-                                                       ▼
-                                              ┌─────────────────┐
-                                              │  Android Auto   │
-                                              │  Head Unit      │
-                                              │  (Car Display)  │
-                                              └─────────────────┘
+```mermaid
+graph LR
+    A[OBD2 Adapter<br/>Bluetooth/USB] <-->|reads PIDs| B[Torque Pro<br/>Main App]
+    B <-->|AIDL IPC| C[AA Torque<br/>This App]
+    C -->|projects UI| D[Android Auto<br/>Head Unit]
+    D --> E[Car Display]
 ```
 
 ---
 
 ## How It All Works (Data Flow)
 
-### 1. Connection Chain
+### Connection Chain
 
-```
-OBD2 Adapter ←→ Torque Pro ←→ AA Torque ←→ Android Auto ←→ Car Display
+```mermaid
+graph LR
+    A[OBD2 Adapter] <--> B[Torque Pro]
+    B <--> C[AA Torque]
+    C --> D[Android Auto]
+    D --> E[Car Display]
 ```
 
-### 2. Detailed Flow
+### Detailed Flow
 
 1. **OBD2 Adapter** connects to the car's ECU via Bluetooth/USB
 2. **Torque Pro** reads PID data from the adapter (e.g., RPM, Speed, Coolant Temp)
@@ -55,18 +53,24 @@ OBD2 Adapter ←→ Torque Pro ←→ AA Torque ←→ Android Auto ←→ Car D
 5. **AA Torque** displays data on gauges, charts, and text displays
 6. **Android Auto** projects AA Torque's UI to the car's head unit
 
-### 3. PID Request Flow
+### PID Request Flow
 
-```
-DashboardFragment
-    → TorqueRefresher.makeExecutors()
-        → ScheduledThreadPoolExecutor (7 threads)
-            → TorqueService.runIfConnected()
-                → ITorqueService.getPIDValuesAsDouble([pid])
-                    → Returns double value
-                        → TorqueData.lastData = value
-                            → UI update callback
-                                → Gauge/Display/Chart updates
+```mermaid
+sequenceDiagram
+    participant DF as DashboardFragment
+    participant TR as TorqueRefresher
+    participant TS as TorqueService
+    participant AIDL as ITorqueService
+    participant UI as Gauge/Display/Chart
+
+    DF->>TR: makeExecutors()
+    loop Every 300ms
+        TR->>TS: runIfConnected()
+        TS->>AIDL: getPIDValuesAsDouble([pid])
+        AIDL-->>TS: returns double value
+        TS-->>TR: TorqueData.lastData = value
+        TR-->>UI: UI update callback
+    end
 ```
 
 ---
@@ -122,7 +126,7 @@ public class CarService extends CarActivityService {
 }
 ```
 
-This is the **entry point** registered in AndroidManifest.xml. Android Auto calls this service to start the app on the car display. It returns `MainCarActivity` which hosts all the fragments.
+This is the entry point registered in AndroidManifest.xml. Android Auto calls this service to start the app on the car display. It returns `MainCarActivity` which hosts all the fragments.
 
 ### 2. `MainCarActivity.kt`: Car UI Host
 
@@ -134,7 +138,7 @@ This is the **entry point** registered in AndroidManifest.xml. Android Auto call
 
 ### 3. `DashboardFragment.kt`: Main Dashboard
 
-This is the **heart of the app**. It:
+This is the heart of the app. It:
 
 - Hosts **3 gauge fragments** (left, center, right): `TorqueGauge`
 - Hosts **4 text display fragments**: `TorqueDisplay`
@@ -153,7 +157,7 @@ This is the **heart of the app**. It:
 
 ### 5. `TorqueServiceWrapper.kt`: Settings-Side IPC Bridge
 
-- Similar to `TorqueService.kt` but used in the **Settings app** (not car display)
+- Similar to `TorqueService.kt` but used in the Settings app (not car display)
 - Loads PID information (names, units, ranges) from Torque
 - Used by `SettingsDashboard` and `SettingsPIDFragment` to populate PID lists
 
@@ -162,7 +166,7 @@ This is the **heart of the app**. It:
 - Manages a `ScheduledThreadPoolExecutor` with 7 threads
 - Polls each configured PID every 300ms (`REFRESH_INTERVAL`)
 - Staggers requests across PIDs to avoid overwhelming the OBD2 adapter
-- Manages connection status flow (`CONNECTING_TORQUE` → `CONNECTING_ECU` → `CONNECTED`)
+- Manages connection status flow (`CONNECTING_TORQUE` -> `CONNECTING_ECU` -> `CONNECTED`)
 - Caches `TorqueData` objects per screen to avoid unnecessary rebuilds
 
 ### 7. `TorqueData.kt`: PID Data Model
@@ -177,12 +181,11 @@ Each displayable item has a `TorqueData` instance that:
 ### 8. `TorqueGauge.kt`: Gauge Fragment
 
 - Displays a speedometer-style gauge using `TorqueSpeedometer` (custom)
-- Supports:
-  - Needle indicator or high-vis ray mode
-  - Tick marks with values
-  - Min/max indicators (mark or text)
-  - Custom dial backgrounds per theme
-  - Alarm color overlays
+- Supports needle indicator or high-vis ray mode
+- Tick marks with values
+- Min/max indicators (mark or text)
+- Custom dial backgrounds per theme
+- Alarm color overlays
 
 ### 9. `TorqueDisplay.kt`: Text Display Fragment
 
@@ -203,19 +206,20 @@ Each displayable item has a `TorqueData` instance that:
 
 ### Two Settings Apps
 
-AA Torque has **two distinct settings interfaces**:
+AA Torque has two distinct settings interfaces:
 
 1. **Phone Settings App** (`SettingsActivity`): Runs on the phone
 2. **Car Dashboard** (managed by `DashboardFragment`): Runs on the car display
 
 ### Data Persistence: Protobuf + DataStore
 
-User preferences are stored using **Protocol Buffers** (Protobuf) with **AndroidX DataStore**:
+User preferences are stored using Protocol Buffers (Protobuf) with AndroidX DataStore:
 
-```
-user_prefs.proto  →  UserPreference class  →  DataStore<UserPreference>
-                                                        ↓
-                                              user_prefs.pb (binary file)
+```mermaid
+graph LR
+    A[user_prefs.proto] -->|generates| B[UserPreference class]
+    B -->|serializes to| C[DataStore]
+    C -->|writes| D[user_prefs.pb]
 ```
 
 The `UserPreference` protobuf message contains:
@@ -231,12 +235,18 @@ The `UserPreference` protobuf message contains:
 
 ### Preference Flow
 
-```
-User changes setting in SettingsFragment
-    → DataStore.updateData { ... }
-        → Protobuf serialization to user_prefs.pb
-            → DashboardFragment observes dataStore.data flow
-                → Updates UI accordingly
+```mermaid
+sequenceDiagram
+    participant User
+    participant SF as SettingsFragment
+    participant DS as DataStore
+    participant DF as DashboardFragment
+
+    User->>SF: changes setting
+    SF->>DS: updateData { ... }
+    DS->>DS: Protobuf serialization to user_prefs.pb
+    DS-->>DF: observes dataStore.data flow
+    DF->>DF: Updates UI accordingly
 ```
 
 ---
@@ -245,34 +255,38 @@ User changes setting in SettingsFragment
 
 ### Data Binding
 
-The app uses **Android Data Binding** extensively. Layout XML files contain `<layout>` tags with `<data>` sections defining variables. Binding expressions like `@{showChart ? View.VISIBLE : View.GONE}` are used throughout.
+The app uses Android Data Binding extensively. Layout XML files contain `<layout>` tags with `<data>` sections defining variables. Binding expressions like `@{showChart ? View.VISIBLE : View.GONE}` are used throughout.
 
 ### Fragment Hierarchy
 
-```
-CarService
-  └── MainCarActivity (CarActivity)
-        └── DashboardFragment (extends AlbumArt → CarFragment → Fragment)
-              ├── TorqueGauge × 3 (left, center, right)
-              │     ├── TorqueSpeedometer (custom gauge widget)
-              │     ├── RaySpeedometer (high-vis mode)
-              │     └── SpeedView (min/max indicator)
-              ├── TorqueDisplay × 4 (text displays)
-              └── TorqueChart (line chart)
-                    └── LegendAdapter (RecyclerView for chart legend)
+```mermaid
+graph TD
+    CS[CarService] --> MCA[MainCarActivity]
+    MCA --> DF[DashboardFragment]
+    DF --> TG1[TorqueGauge - Left]
+    DF --> TG2[TorqueGauge - Center]
+    DF --> TG3[TorqueGauge - Right]
+    DF --> TD1[TorqueDisplay x4]
+    DF --> TC[TorqueChart]
+    TG2 --> TS[TorqueSpeedometer]
+    TG2 --> RS[RaySpeedometer]
+    TG2 --> SV[SpeedView - min/max]
+    TC --> LA[LegendAdapter]
 ```
 
 ### Settings Fragment Hierarchy
 
-```
-SettingsActivity (AppCompatActivity)
-  └── SettingsFragment (PreferenceFragmentCompat)
-        ├── ImageListPreference (Theme, Font, Background)
-        ├── SettingsDashboard (per-dashboard settings)
-        │     └── SettingsPIDFragment (per-gauge/display settings)
-        │           └── AlarmFragment (Compose-based alarm editor)
-        ├── DashboardPreviewFragment (full-screen preview)
-        └── CreditsFragment
+```mermaid
+graph TD
+    SA[SettingsActivity] --> SF[SettingsFragment]
+    SF --> ILP1[ImageListPreference - Theme]
+    SF --> ILP2[ImageListPreference - Font]
+    SF --> ILP3[ImageListPreference - Background]
+    SF --> SD[SettingsDashboard]
+    SD --> SPF[SettingsPIDFragment]
+    SPF --> AF[AlarmFragment]
+    SF --> DPF[DashboardPreviewFragment]
+    SF --> CF[CreditsFragment]
 ```
 
 ---
@@ -290,12 +304,12 @@ Each theme defines:
 
 ### Theme Application
 
-```
-styles.xml defines theme styles (e.g., AppTheme.Volkswagen)
-    → Each style references drawable resources and color values
-        → mapTheme() looks up theme name in arrays.xml
-            → Returns the style resource ID
-                → Activity.setTheme() applies it
+```mermaid
+graph TD
+    A["styles.xml defines theme styles"] --> B["Each style references drawable resources"]
+    B --> C["mapTheme looks up theme name"]
+    C --> D["arrays.xml returns style resource ID"]
+    D --> E["Activity.setTheme applies it"]
 ```
 
 ### Custom Theme Attributes
@@ -394,13 +408,19 @@ The AIDL interface defines how AA Torque communicates with Torque Pro. Key metho
 
 ### Connection Flow
 
-```
-TorqueService.startTorque()
-    → Intent to org.prowl.torque.remote.TorqueService
-        → bindService() with BIND_AUTO_CREATE
-            → ServiceConnection.onServiceConnected()
-                → ITorqueService.Stub.asInterface(binder)
-                    → torqueService = svc
+```mermaid
+sequenceDiagram
+    participant TS as TorqueService
+    participant Intent
+    participant TSRemote as Torque Pro Service
+    participant SC as ServiceConnection
+
+    TS->>Intent: startTorque()
+    Intent->>TSRemote: Intent to org.prowl.torque.remote.TorqueService
+    TS->>TSRemote: bindService() with BIND_AUTO_CREATE
+    TSRemote-->>SC: onServiceConnected()
+    SC->>TS: ITorqueService.Stub.asInterface(binder)
+    TS->>TS: torqueService = svc
 ```
 
 ### PID Naming Convention
@@ -436,4 +456,4 @@ Your 2025 Honda Elevate uses Honda's infotainment system. Android Auto support d
 - The head unit resolution (affects layout)
 - Rotary dial support (if equipped)
 
-AA Torque's layout adapts to screen size via ConstraintLayout and percentage-based guidelines. Most Honda head units use a standard 800×480 or 1280×720 resolution, which the app handles well.
+AA Torque's layout adapts to screen size via ConstraintLayout and percentage-based guidelines. Most Honda head units use a standard 800x480 or 1280x720 resolution, which the app handles well.

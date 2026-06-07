@@ -77,8 +77,8 @@ sdkmanager "platforms;android-34" "build-tools;34.0.0" "platform-tools"
 ## Clone the Repository
 
 ```bash
-git clone --recurse-submodules https://github.com/agronick/aa-torque.git
-cd aa-torque
+git clone --recurse-submodules https://github.com/wthrajat/android-auto-torque.git
+cd android-auto-torque
 
 # If you forgot --recurse-submodules:
 git submodule update --init --recursive

@@ -1,5 +1,5 @@
-![CI Status](https://github.com/agronick/aa-torque/actions/workflows/ci.yml/badge.svg?branch=master)
-![downloads](https://img.shields.io/github/downloads/agronick/aa-torque/total.svg)
+![CI Status](https://github.com/wthrajat/android-auto-torque/actions/workflows/ci.yml/badge.svg?branch=master)
+![downloads](https://img.shields.io/github/downloads/wthrajat/android-auto-torque/total.svg)
 
 # AA Torque
 
@@ -22,7 +22,7 @@ Display real-time vehicle data from [Torque Pro](https://play.google.com/store/a
 
 ## Video
 
-[![Watch on YouTube](https://github.com/agronick/aa-torque/assets/2042303/b735fc1c-8732-4237-8a8d-a540a0d1f778)](https://www.youtube.com/watch?v=gYJJ9M9a0m8)
+[![Watch on YouTube](https://github.com/wthrajat/android-auto-torque/assets/2042303/b735fc1c-8732-4237-8a8d-a540a0d1f778)](https://www.youtube.com/watch?v=gYJJ9M9a0m8)
 
 ## Features
 
@@ -78,7 +78,7 @@ See the [OBD2 Adapter Guide](docs/OBD2_ADAPTERS.md) for what to buy.
 
 ### Step 3: Download AA Torque
 
-1. Go to [github.com/agronick/aa-torque/releases](https://github.com/agronick/aa-torque/releases)
+1. Go to [github.com/wthrajat/android-auto-torque/releases](https://github.com/wthrajat/android-auto-torque/releases)
 2. Download the latest `aa-torque.apk`
 3. Don't install it yet
 
@@ -92,7 +92,7 @@ Google Pixel phones need this to make Android Auto recognize third-party apps. I
 
 **Pixel Android 14/15:** You may need to update Google Package Installer first. Get it from [APKMirror](https://www.apkmirror.com/apk/google-inc/package-installer-com-google-android-packageinstaller/) or extract it from your phone using a file manager like [MiXplorer](https://mixplorer.com/).
 
-Google frequently patches the loopholes KingInstaller uses. Check [GitHub Discussions](https://github.com/agronick/aa-torque/discussions) if something breaks.
+Google frequently patches the loopholes KingInstaller uses. Check [GitHub Discussions](https://github.com/wthrajat/android-auto-torque/discussions) if something breaks.
 
 ### Step 5: Install AA Torque
 
@@ -133,7 +133,7 @@ Google frequently patches the loopholes KingInstaller uses. Check [GitHub Discus
 
 ## Updating
 
-AA Torque checks for updates automatically. When a new version is available, tap "Download" in the settings app. If the install fails, download the APK manually from [GitHub Releases](https://github.com/agronick/aa-torque/releases) and install via KingInstaller.
+AA Torque checks for updates automatically. When a new version is available, tap "Download" in the settings app. If the install fails, download the APK manually from [GitHub Releases](https://github.com/wthrajat/android-auto-torque/releases) and install via KingInstaller.
 
 After a phone restart or OS update, you may need to re-enable Unknown Sources in Android Auto Developer Settings.
 
@@ -199,8 +199,8 @@ Quick start (macOS):
 ```bash
 brew install --cask zulu@19
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-19.jdk/Contents/Home
-git clone --recurse-submodules https://github.com/agronick/aa-torque.git
-cd aa-torque
+git clone --recurse-submodules https://github.com/wthrajat/android-auto-torque.git
+cd android-auto-torque
 echo "sdk.dir=$HOME/Library/Android/sdk" > local.properties
 ./gradlew assembleDebug
 adb install -r app/build/outputs/apk/debug/app-debug.apk
@@ -224,18 +224,35 @@ adb install -r app/build/outputs/apk/debug/app-debug.apk
 
 ## Screenshots
 
-<img src="https://github.com/agronick/aa-torque/assets/2042303/e31b0598-25ec-4003-bcee-11e5e108d3a4" width="100%" alt="Dashboard with 3 gauges and text displays" />
+<img src="https://github.com/wthrajat/android-auto-torque/assets/2042303/e31b0598-25ec-4003-bcee-11e5e108d3a4" width="100%" alt="Dashboard with 3 gauges and text displays" />
 
-<img src="https://github.com/agronick/aa-torque/assets/2042303/bf40ed97-adf3-4923-bbc5-63a618899173" width="100%" alt="Album art background with ray instead of needle" />
+<img src="https://github.com/wthrajat/android-auto-torque/assets/2042303/bf40ed97-adf3-4923-bbc5-63a618899173" width="100%" alt="Album art background with ray instead of needle" />
 
-<img src="https://github.com/agronick/aa-torque/assets/2042303/a99571f9-0bb3-43ec-89ce-938e41506e97" width="100%" alt="Chart view showing real-time data" />
+<img src="https://github.com/wthrajat/android-auto-torque/assets/2042303/a99571f9-0bb3-43ec-89ce-938e41506e97" width="100%" alt="Chart view showing real-time data" />
 
-<img src="https://github.com/agronick/aa-torque/assets/2042303/229315c8-ad3b-42e6-86e6-e7fe7abb16a8" width="100%" alt="Dashboard with different theme" />
+<img src="https://github.com/wthrajat/android-auto-torque/assets/2042303/229315c8-ad3b-42e6-86e6-e7fe7abb16a8" width="100%" alt="Dashboard with different theme" />
 
-<img src="https://github.com/agronick/aa-torque/assets/2042303/698c666b-5e3c-4611-80a5-8e767b04186a" width="100%" alt="Dashboard with multiple displays" />
+<img src="https://github.com/wthrajat/android-auto-torque/assets/2042303/698c666b-5e3c-4611-80a5-8e767b04186a" width="100%" alt="Dashboard with multiple displays" />
 
 ---
 
-Contributing: [CONTRIBUTING.md](CONTRIBUTING.md) | Donate: [PayPal](https://www.paypal.me/kagronick) | [GitHub Sponsors](https://github.com/agronick)
+Contributing: [CONTRIBUTING.md](CONTRIBUTING.md)
 
-Based on [Chillout's Performance Monitor](https://github.com/jilleb/mqb-pm), which was based on Martoreto's aa-stats.
+---
+
+## Fork Notice
+
+This project is a fork of [AA Torque](https://github.com/agronick/aa-torque) by Kyle Agronick, licensed under the [GNU General Public License v3](LICENSE.md).
+
+Kyle Agronick is the original author and creator of AA Torque. The original project is based on [Chillout's Performance Monitor](https://github.com/jilleb/mqb-pm), which was based on Martoreto's aa-stats.
+
+Under GPL v3, anyone who redistributes this software must:
+- Keep the original license and copyright notices
+- Distribute under the same GPL v3 license
+- Make the source code available to recipients
+- Mark modified files clearly
+
+Icon credits:
+- Horse by Peleg Red; [Noun Project](https://thenounproject.com/browse/icons/term/horse/) (CC BY 3.0)
+- Engine Cylinder by Thuy Nguyen; [Noun Project](https://thenounproject.com/browse/icons/term/engine-cylinder/) (CC BY 3.0)
+- Transmission by Gustyne Pissesa Ardhaneswari; [Noun Project](https://thenounproject.com/browse/icons/term/transmission/) (CC BY 3.0)

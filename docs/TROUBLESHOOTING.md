@@ -23,7 +23,7 @@ Common issues and how to fix them.
 1. Update Google Package Installer from APKMirror
 2. Install via KingInstaller (not directly)
 3. If still failing, try the "Force Update" option in AA Torque Settings
-4. Check [GitHub Discussions](https://github.com/agronick/aa-torque/discussions) for latest Pixel-specific workarounds
+4. Check [GitHub Discussions](https://github.com/wthrajat/android-auto-torque/discussions) for latest Pixel-specific workarounds
 
 ## No data showing on car display
 
@@ -48,6 +48,6 @@ Common issues and how to fix them.
 ## App crashes or freezes
 
 1. Open AA Torque Settings > Menu > "Copy logs to clipboard"
-2. Paste the logs into a [GitHub Issue](https://github.com/agronick/aa-torque/issues) or [Discussion](https://github.com/agronick/aa-torque/discussions)
+2. Paste the logs into a [GitHub Issue](https://github.com/wthrajat/android-auto-torque/issues) or [Discussion](https://github.com/wthrajat/android-auto-torque/discussions)
 3. Try clearing the app data: Settings > Apps > AA Torque > Storage > Clear Data
 4. Reconfigure your dashboards

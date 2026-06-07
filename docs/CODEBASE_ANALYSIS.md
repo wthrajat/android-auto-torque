@@ -17,12 +17,34 @@ A file-by-file analysis of every source file in the project, explaining what it 
 
 ## Source Files Map
 
-```
-com.aatorque.stats          → Dashboard & car display components
-com.aatorque.prefs          → Settings & preferences system
-com.aatorque.utils          → Utility/helper classes
-com.aatorque.ui.theme       → Compose theme (alarm editor)
-org.prowl.torque.remote     → Torque Pro IPC interface
+```mermaid
+graph TD
+    subgraph com.aatorque.stats [stats: Dashboard & car display]
+        A1[MainCarActivity.kt]
+        A2[DashboardFragment.kt]
+        A3[TorqueGauge.kt]
+        A4[TorqueDisplay.kt]
+        A5[TorqueChart.kt]
+        A6[TorqueService.kt]
+        A7[TorqueRefresher.kt]
+        A8[TorqueData.kt]
+    end
+
+    subgraph com.aatorque.prefs [prefs: Settings system]
+        B1[SettingsActivity.kt]
+        B2[SettingsFragment.kt]
+        B3[SettingsPIDFragment.kt]
+        B4[PrefStore.kt]
+    end
+
+    subgraph com.aatorque.utils [utils: Helpers]
+        C1[AnimatedLine.kt]
+        C2[CountdownLatch.kt]
+    end
+
+    subgraph org.prowl.torque.remote [remote: IPC interface]
+        D1[ITorqueService.aidl]
+    end
 ```
 
 ---
@@ -39,17 +61,17 @@ Extends `CarActivityService`. When Android Auto launches the app, it calls this 
 ### `ITorqueService.java` (~4000+ lines, auto-generated)
 **Purpose:** AIDL-generated IPC interface for communicating with Torque Pro.
 
-This file is **auto-generated** from `ITorqueService.aidl` and should never be manually edited. It contains:
+This file is auto-generated from `ITorqueService.aidl` and should never be manually edited. It contains:
 - `Stub` class: Server-side implementation base
 - `Proxy` class: Client-side proxy for IPC calls
 - `Default` class: Default no-op implementation
 
 **Key methods used by AA Torque:**
-- `listAllPIDs()` → Gets all available sensor IDs
-- `getPIDInformation(String[])` → Gets sensor metadata (name, unit, min, max)
-- `getPIDValuesAsDouble(String[])` → Gets current sensor values
-- `isConnectedToECU()` → Checks if car is connected
-- `setDebugTestMode(boolean)` → Enables simulated data for development
+- `listAllPIDs()` -> Gets all available sensor IDs
+- `getPIDInformation(String[])` -> Gets sensor metadata (name, unit, min, max)
+- `getPIDValuesAsDouble(String[])` -> Gets current sensor values
+- `isConnectedToECU()` -> Checks if car is connected
+- `setDebugTestMode(boolean)` -> Enables simulated data for development
 
 ### `ListMenuAdapter.java` (96 lines)
 **Purpose:** Android Auto menu adapter for the car display's menu system.
@@ -102,8 +124,8 @@ Defines `title` property and `setupStatusBar()` abstract method. All car-facing 
 **Purpose:** The main dashboard fragment: the most important UI component.
 
 **Responsibilities:**
-- Hosts 3 gauge fragments (`TorqueGauge` × 3)
-- Hosts 4 text display fragments (`TorqueDisplay` × 4)
+- Hosts 3 gauge fragments (`TorqueGauge` x 3)
+- Hosts 4 text display fragments (`TorqueDisplay` x 4)
 - Hosts 1 chart fragment (`TorqueChart`)
 - Manages screen switching (up to 10 dashboards)
 - Observes all user preferences via DataStore
@@ -112,12 +134,14 @@ Defines `title` property and `setupStatusBar()` abstract method. All car-facing 
 - Manages gauge opacity and center gauge scaling
 
 **Data flow:**
-```
-DataStore.data → collect → update gauges/displays/chart
-                         → update background
-                         → update font
-                         → update opacity
-                         → update connection status
+
+```mermaid
+graph LR
+    DS[DataStore.data] -->|collect| U1[update gauges/displays/chart]
+    DS -->|collect| U2[update background]
+    DS -->|collect| U3[update font]
+    DS -->|collect| U4[update opacity]
+    DS -->|collect| U5[update connection status]
 ```
 
 #### `TorqueGauge.kt` (252 lines)
@@ -176,9 +200,14 @@ DataStore.data → collect → update gauges/displays/chart
 - `cache`: Per-screen TorqueData cache
 
 **Flow:**
-1. `makeExecutors()`: Schedules refresh tasks for all active PIDs
-2. `doRefresh()`: Calls `ITorqueService.getPIDValuesAsDouble()` and updates `TorqueData`
-3. `stopExecutors()`: Cancels all scheduled tasks
+
+```mermaid
+graph TD
+    A[makeExecutors] -->|schedules| B[doRefresh every 300ms]
+    B -->|calls| C[ITorqueService.getPIDValuesAsDouble]
+    C -->|returns| D[TorqueData.lastData = value]
+    B -->|when done| E[stopExecutors]
+```
 
 #### `TorqueChart.kt` (147 lines)
 **Purpose:** Real-time line chart fragment using GraphView.
@@ -272,7 +301,7 @@ Shows color, label, and current value for each charted PID.
 #### `SettingsViewModel.kt` (28 lines)
 **Purpose:** ViewModel for sharing state between settings fragments.
 
-- `selectedFont` → `typefaceLiveData` (FontRes → Typeface)
+- `selectedFont` -> `typefaceLiveData` (FontRes -> Typeface)
 - `chartVisible`: Whether chart mode is active
 - `minMaxBelow`: Whether min/max is below gauge
 
@@ -321,7 +350,7 @@ Shows images next to each option in the selection dialog.
 #### `FormulaPreference.kt` (95 lines)
 **Purpose:** Custom expression editor with preset formulas.
 
-Provides a spinner with preset formulas (F→C, PSI→BAR, etc.) and a text field for custom expressions. Links to EvalEx documentation.
+Provides a spinner with preset formulas (F->C, PSI->BAR, etc.) and a text field for custom expressions. Links to EvalEx documentation.
 
 #### `AlarmFragment.kt` (263 lines)
 **Purpose:** Jetpack Compose-based alarm editor.
@@ -483,7 +512,7 @@ project(':speedviewlib').projectDir = new File(rootDir, 'lib/speedviewlib/speedv
 | `Protobuf Java Util` | 3.25.1 | Protocol Buffers |
 | `DataStore` | 1.1.1 | Preferences storage |
 | `Compose BOM` | 2023.10.01 | Jetpack Compose |
-| `Material3` |: | Material Design 3 |
+| `Material3` | latest | Material Design 3 |
 | `ColorPicker` | 3.1.0 | Color picker dialog |
 | `rotate-layout` | 3.0.0 | Layout rotation |
 | `compose-reorderable` | 0.9.6 | Reorderable lists |

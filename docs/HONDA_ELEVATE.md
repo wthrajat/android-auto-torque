@@ -375,8 +375,8 @@ If certain PIDs show 0 or error:
 
 ## Useful Resources
 
-- **AA Torque GitHub:** https://github.com/agronick/aa-torque
-- **AA Torque Discussions:** https://github.com/agronick/aa-torque/discussions
+- **AA Torque GitHub:** https://github.com/wthrajat/android-auto-torque
+- **AA Torque Discussions:** https://github.com/wthrajat/android-auto-torque/discussions
 - **Torque Pro:** https://torque-bhp.com/
 - **KingInstaller:** https://github.com/fcaronte/KingInstaller
 - **Honda Elevate Owners Forum:** Search for "Honda Elevate OBD2" on Team-BHP
