@@ -140,7 +140,7 @@
     <string name="boolean_logic">Boole\'sche Logik</string>
     <string name="convert_newton_ft_lb">Newtonmeter (Nm) nach Fußpfund (ft•lb) umrechnen</string>
     <string name="convert_cc_min_gal_hour">Kubikzentimeter pro Minute (cm³ \\ min) nach Gallonen pro Stunde (gal / h) umrechnen</string>
-    <string name="convert_liter_100_km">Liter pro 100 km (l / 100 km) nach Meilen per Gallon (mpg) umrechnen</string>
+    <string name="convert_liter_100_km_to_mpg">Liter pro 100 km (l / 100 km) nach Meilen per Gallon (mpg) umrechnen</string>
     <string name="convert_kpa_psi">Kilopascal (kPa) nach PSI umrechnen</string>
     <string name="status_setup_gauges">Richten Sie die Messinstrumente in den Einstellungen ein</string>
     <string name="element_cylinder">Zylinder / Kolben</string>

@@ -142,7 +142,7 @@
     <string name="boolean_logic">Logika Boole’a</string>
     <string name="convert_newton_ft_lb">Newtony metry na stopy-funty</string>
     <string name="convert_cc_min_gal_hour">CC na minutę na galon godzinę</string>
-    <string name="convert_liter_100_km">Litrów 100/km na mile na galon</string>
+    <string name="convert_liter_100_km_to_mpg">Litrów 100/km na mile na galon</string>
     <string name="convert_kpa_psi">Kilopaskale (kPa) do (PSI)</string>
     <string name="status_setup_gauges">Skonfiguruj wskaźniki w ustawieniach</string>
     <string name="element_cylinder">Cylinder silnika</string>

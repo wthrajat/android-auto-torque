@@ -34,7 +34,7 @@ screens {
     showLabel: true
     label: "Speed"
     icon: "ic_barometer"
-    maxValue: 160
+    maxValue: 200
     unit: "km/h"
     highVisActive: true
     ticksActive: true
@@ -52,10 +52,54 @@ screens {
     chartColor: -1476547
     disabled: false
   }
-  displays {}
-  displays {}
-  displays {}
-  displays {}
+  displays {
+    pid: "torque_05,0"
+    showLabel: true
+    label: "Coolant"
+    icon: "ic_barometer"
+    maxValue: 150
+    unit: "C"
+    wholeNumbers: true
+    ticksActive: false
+    chartColor: -16738048
+    disabled: false
+  }
+  displays {
+    pid: "torque_2f,0"
+    showLabel: true
+    label: "Fuel"
+    icon: "ic_barometer"
+    maxValue: 100
+    unit: "%"
+    wholeNumbers: true
+    ticksActive: false
+    chartColor: -65536
+    disabled: false
+  }
+  displays {
+    pid: "torque_04,0"
+    showLabel: true
+    label: "Load"
+    icon: "ic_barometer"
+    maxValue: 100
+    unit: "%"
+    wholeNumbers: true
+    ticksActive: false
+    chartColor: -16776961
+    disabled: false
+  }
+  displays {
+    pid: "torque_0f,0"
+    showLabel: true
+    label: "Intake"
+    icon: "ic_barometer"
+    maxValue: 80
+    unit: "C"
+    wholeNumbers: true
+    ticksActive: false
+    chartColor: -16711681
+    disabled: false
+  }
 }
 selectedTheme: "Electro Vehicle"
 selectedFont: "ev"

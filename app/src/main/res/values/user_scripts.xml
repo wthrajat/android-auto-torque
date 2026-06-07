@@ -10,22 +10,32 @@
         <item>@string/boolean_logic</item>
         <item>@string/convert_newton_ft_lb</item>
         <item>@string/convert_cc_min_gal_hour</item>
-        <item>@string/convert_liter_100_km</item>
+        <item>@string/convert_liter_100_km_to_mpg</item>
         <item>@string/convert_kpa_psi</item>
         <item>@string/convert_minutes_seconds</item>
+        <item>@string/convert_liter_100_km_to_kmpl</item>
+        <item>@string/convert_kw_hp</item>
+        <item>@string/convert_kpa_bar</item>
+        <item>@string/convert_bar_kpa</item>
+        <item>@string/convert_ft_lb_newton</item>
     </array>
     <array name="user_script">
         <item />
         <item>a * 1.8 + 32</item>
-        <item>(a − 32) × 5/9</item>
+        <item>(a - 32) * 5/9</item>
         <item>a * 14.5038</item>
         <item>a / 14.5038</item>
         <item>a * 0.621371</item>
-        <item>IF(a == 0, \"Off\", \"On\")</item>
+        <item>IF(a == 0, "Off", "On")</item>
         <item>a / 1.356</item>
         <item>a * 0.015850323074494</item>
         <item>a * 235.215</item>
         <item>a * 0.14504</item>
-        <item>FLOOR(a / 60) + \":\" + (a % 60)</item>
+        <item>FLOOR(a / 60) + ":" + (a % 60)</item>
+        <item>100 / a</item>
+        <item>a * 1.34102</item>
+        <item>a / 100</item>
+        <item>a * 100</item>
+        <item>a * 1.356</item>
     </array>
 </resources>

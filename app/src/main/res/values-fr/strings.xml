@@ -134,7 +134,7 @@
     <string name="boolean_logic">Logique booléenne</string>
     <string name="convert_newton_ft_lb">Newton Mètres a Pied-livres</string>
     <string name="convert_cc_min_gal_hour">CC par minute en Gallon-Heure</string>
-    <string name="convert_liter_100_km">Litre 100/km en Miles par Gallon</string>
+    <string name="convert_liter_100_km_to_mpg">Litre 100/km en Miles par Gallon</string>
     <string name="convert_kpa_psi">Kilopascals (kPa) à (PSI)</string>
     <string name="status_setup_gauges">Configurer les jauges dans les paramètres</string>
     <string name="element_cylinder">Cylindre moteur</string>

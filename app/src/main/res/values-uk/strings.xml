@@ -154,7 +154,7 @@
     <string name="boolean_logic">Булева логіка</string>
     <string name="convert_newton_ft_lb">Ньютонні метри в фунт-фунти</string>
     <string name="convert_cc_min_gal_hour">CC в хвилину до галонів на годину</string>
-    <string name="convert_liter_100_km">Літр 100/км до миль на галон</string>
+    <string name="convert_liter_100_km_to_mpg">Літр 100/км до миль на галон</string>
     <string name="convert_kpa_psi">Кілопаскалі (кПа) до (PSI)</string>
     <string name="status_setup_gauges">Налаштування датчиків у налаштуваннях</string>
 </resources>

@@ -164,7 +164,7 @@
     <string name="boolean_logic">Lógica booleana</string>
     <string name="convert_newton_ft_lb">Newtons-Metro a Libras-Pie</string>
     <string name="convert_cc_min_gal_hour">CC por minuto a Galones-Hora</string>
-    <string name="convert_liter_100_km">Litros / 100 km a Millas por galón</string>
+    <string name="convert_liter_100_km_to_mpg">Litros / 100 km a Millas por galón</string>
     <string name="convert_kpa_psi">Kilopascales (kPa) a (PSI)</string>
 
     <!-- Additional context is required for a correct translation. Where will be this string used? -->

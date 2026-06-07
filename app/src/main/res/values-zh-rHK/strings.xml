@@ -141,7 +141,7 @@
     <string name="boolean_logic">布林邏輯</string>
     <string name="convert_newton_ft_lb">牛頓米轉換為英尺磅</string>
     <string name="convert_cc_min_gal_hour">CC/分鐘 轉為 加侖/小時</string>
-    <string name="convert_liter_100_km">公升 100/公里 換算為 英哩/加侖</string>
+    <string name="convert_liter_100_km_to_mpg">公升 100/公里 換算為 英哩/加侖</string>
     <string name="convert_kpa_psi">千帕 (kPa) 轉換至 (PSI)</string>
     <string name="status_setup_gauges">在設定中設定儀表</string>
     <string name="element_cylinder">引擎汽缸</string>

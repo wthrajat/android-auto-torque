@@ -149,9 +149,14 @@
     <string name="convert_km_to_miles">Kilometers to Miles</string>
     <string name="boolean_logic">Boolean Logic</string>
     <string name="convert_newton_ft_lb">Newton Meters to Foot-pounds</string>
+    <string name="convert_ft_lb_newton">Foot-pounds to Newton Meters</string>
     <string name="convert_cc_min_gal_hour">CC per minute to Gallon Hour</string>
-    <string name="convert_liter_100_km">Liter 100/km to Miles per Gallon</string>
-    <string name="convert_kpa_psi">Kilopascals (kPa) to (PSI)</string>
+    <string name="convert_kw_hp">Kilowatts to Horsepower</string>
+    <string name="convert_liter_100_km_to_mpg">Liter 100/km to Miles per Gallon</string>
+    <string name="convert_liter_100_km_to_kmpl">Liter 100/km to Kilometers per Litre</string>
+    <string name="convert_kpa_psi">Kilopascals (kPa) to PSI</string>
+    <string name="convert_kpa_bar">Kilopascals (kPa) to BAR</string>
+    <string name="convert_bar_kpa">BAR to Kilopascals (kPa)</string>
     <string name="status_setup_gauges">Setup gauges in settings</string>
     <string name="element_cylinder">Engine Cylinder</string>
     <string name="element_horsepower">Horsepower</string>
