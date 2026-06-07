@@ -156,7 +156,6 @@
     <string name="force_update">Update erzwingen</string>
     <string name="update_failed">Aktualisierung-Prüfung fehlgeschlagen</string>
     <string name="convert_minutes_seconds">Sekunden (s) nach Minuten &amp; Sekunden (MM:SS) umrechnen</string>
-    <string name="donate">Spenden</string>
     <string name="translate">Übersetzen</string>
     <string name="pref_chart_title">Farbe der Diagrammlinie</string>
     <string name="pref_chart_summary">Farbe zum Zeichnen der Linie im Diagramm</string>

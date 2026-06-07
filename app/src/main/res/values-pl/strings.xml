@@ -158,7 +158,6 @@
     <string name="force_update">Wymuś aktualizację</string>
     <string name="update_failed">Kontrola aktualizacji nie powiodła się</string>
     <string name="convert_minutes_seconds">Sekundy na minuty:Sekundy</string>
-    <string name="donate">Prosimy o darowiznę!</string>
     <string name="translate">Tłumaczyć</string>
     <string name="pref_chart_title">Kolor linii wykresu</string>
     <string name="pref_chart_summary">Kolor, który będzie używany do rysowania linii na wykresie</string>

@@ -245,7 +245,7 @@ Custom `@BindingAdapter` functions:
 - `reversed()`: Reverses child order in LinearLayout
 
 #### `CreditsFragment.kt` (32 lines)
-**Purpose:** Credits/about screen with links to GitHub, PayPal, and translation.
+**Purpose:** Credits/about screen with links to GitHub and translation.
 
 #### `NotiService.kt` (12 lines)
 **Purpose:** Notification listener service for detecting media sessions.

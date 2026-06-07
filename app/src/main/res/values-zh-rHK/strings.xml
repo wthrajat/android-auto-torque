@@ -157,7 +157,6 @@
     <string name="force_update">強制升級</string>
     <string name="update_failed">檢查更新失敗</string>
     <string name="convert_minutes_seconds">秒轉換為分鐘</string>
-    <string name="donate">請捐款！</string>
     <string name="translate">翻譯</string>
     <string name="pref_chart_title">圖表線條顏色</string>
     <string name="pref_chart_summary">用於在圖表上繪製線條的顏色</string>

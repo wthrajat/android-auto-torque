@@ -166,7 +166,6 @@
     <string name="force_update">Force update</string>
     <string name="update_failed">Update check failed</string>
     <string name="convert_minutes_seconds">Seconds to Minutes:Seconds</string>
-    <string name="donate">Please donate!</string>
     <string name="translate">Translate</string>
     <string name="pref_chart_title">Chart line color</string>
     <string name="pref_chart_summary">Color to be used to draw lines on the chart</string>

@@ -150,7 +150,6 @@
     <string name="force_update">Forcer la mise à jour</string>
     <string name="update_failed">La vérification de la mise à jour a échoué</string>
     <string name="convert_minutes_seconds">Secondes en minutes : secondes</string>
-    <string name="donate">S\'il vous plaît, faites un don !</string>
     <string name="translate">Traduire</string>
     <string name="pref_chart_title">Couleur des lignes du graphique</string>
     <string name="pref_chart_summary">Couleur à utiliser pour tracer des lignes sur le graphique</string>
