@@ -245,7 +245,7 @@ To add a 4th gauge, you would need to:
 
 ### Understanding PIDs
 
-PIDs (Parameter IDs) are identifiers for vehicle sensors. They come from Torque Pro. AA Torque doesn't read them directly — it asks Torque Pro for the values.
+PIDs (Parameter IDs) are identifiers for vehicle sensors. They come from Torque Pro. AA Torque doesn't read them directly: it asks Torque Pro for the values.
 
 ### Common PIDs
 
@@ -319,9 +319,9 @@ centerGaugeLarge: true
 In the settings, users can add EvalEx expressions. The variable `a` represents the current value.
 
 Examples:
-- `a * 1.8 + 32` — Convert Celsius to Fahrenheit
-- `a * 14.5038` — Convert BAR to PSI
-- `a > 100 ? 100 : a` — Clamp to 0-100
+- `a * 1.8 + 32`: Convert Celsius to Fahrenheit
+- `a * 14.5038`: Convert BAR to PSI
+- `a > 100 ? 100 : a`: Clamp to 0-100
 
 ---
 
@@ -585,7 +585,7 @@ The debug build has `SIMULATE_METRICS = true`, which makes Torque return simulat
 
 ## Tips for Non-Android Developers
 
-1. **XML Layouts** are like HTML — they define the visual structure
+1. **XML Layouts** are like HTML: they define the visual structure
 2. **Data Binding** lets you bind Kotlin/Java variables directly to XML elements
 3. **Fragments** are like sub-pages within an Activity
 4. **Protobuf** is a compact binary format for storing structured data

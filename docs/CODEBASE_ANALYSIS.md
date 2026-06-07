@@ -40,9 +40,9 @@ Extends `CarActivityService`. When Android Auto launches the app, it calls this 
 **Purpose:** AIDL-generated IPC interface for communicating with Torque Pro.
 
 This file is **auto-generated** from `ITorqueService.aidl` and should never be manually edited. It contains:
-- `Stub` class — Server-side implementation base
-- `Proxy` class — Client-side proxy for IPC calls
-- `Default` class — Default no-op implementation
+- `Stub` class: Server-side implementation base
+- `Proxy` class: Client-side proxy for IPC calls
+- `Default` class: Default no-op implementation
 
 **Key methods used by AA Torque:**
 - `listAllPIDs()` → Gets all available sensor IDs
@@ -80,8 +80,8 @@ Implements `MenuAdapter` from the Android Auto SDK. Manages menu items and handl
 - Uses `LocalBroadcastManager` to forward key events to fragments
 
 **Key constants:**
-- `MENU_DASHBOARD`, `MENU_CREDITS`, `MENU_STOPWATCH` — Menu item names
-- `FRAGMENT_CAR`, `FRAGMENT_CREDITS`, `FRAGMENT_STOPWATCH` — Fragment tags
+- `MENU_DASHBOARD`, `MENU_CREDITS`, `MENU_STOPWATCH`: Menu item names
+- `FRAGMENT_CAR`, `FRAGMENT_CREDITS`, `FRAGMENT_STOPWATCH`: Fragment tags
 
 #### `CarFragment.kt` (15 lines)
 **Purpose:** Abstract base class for all fragments shown in the car display.
@@ -99,7 +99,7 @@ Defines `title` property and `setupStatusBar()` abstract method. All car-facing 
 **Extended by:** `DashboardFragment`
 
 #### `DashboardFragment.kt` (340 lines)
-**Purpose:** The main dashboard fragment — the most important UI component.
+**Purpose:** The main dashboard fragment: the most important UI component.
 
 **Responsibilities:**
 - Hosts 3 gauge fragments (`TorqueGauge` × 3)
@@ -124,9 +124,9 @@ DataStore.data → collect → update gauges/displays/chart
 **Purpose:** Individual gauge fragment displaying a speedometer-style dial.
 
 **Components:**
-- `TorqueSpeedometer` — Main gauge with needle
-- `RaySpeedometer` — High-visibility ray mode
-- `SpeedView` — Min/max indicator overlay
+- `TorqueSpeedometer`: Main gauge with needle
+- `RaySpeedometer`: High-visibility ray mode
+- `SpeedView`: Min/max indicator overlay
 
 **Features:**
 - Custom needle/indicator via theme attributes
@@ -153,12 +153,12 @@ DataStore.data → collect → update gauges/displays/chart
 **Purpose:** Data model for a single PID/displayable item.
 
 **Key properties:**
-- `pid` — The PID identifier (e.g., "0c,0")
-- `lastData` — Current value (triggers formatting on set)
-- `lastDataStr` — Formatted string for display
-- `minValue`, `maxValue` — Historical min/max
-- `expression` — EvalEx expression for custom formulas
-- `currentAlarm` — LiveData for alarm state
+- `pid`: The PID identifier (e.g., "0c,0")
+- `lastData`: Current value (triggers formatting on set)
+- `lastDataStr`: Formatted string for display
+- `minValue`, `maxValue`: Historical min/max
+- `expression`: EvalEx expression for custom formulas
+- `currentAlarm`: LiveData for alarm state
 
 **Key features:**
 - Applies custom EvalEx expressions for unit conversion
@@ -171,14 +171,14 @@ DataStore.data → collect → update gauges/displays/chart
 
 **Key components:**
 - `ScheduledThreadPoolExecutor` with 7 threads
-- `REFRESH_INTERVAL = 300ms` — Polling rate
-- `ConnectStatus` enum — Connection state machine
-- `cache` — Per-screen TorqueData cache
+- `REFRESH_INTERVAL = 300ms`: Polling rate
+- `ConnectStatus` enum: Connection state machine
+- `cache`: Per-screen TorqueData cache
 
 **Flow:**
-1. `makeExecutors()` — Schedules refresh tasks for all active PIDs
-2. `doRefresh()` — Calls `ITorqueService.getPIDValuesAsDouble()` and updates `TorqueData`
-3. `stopExecutors()` — Cancels all scheduled tasks
+1. `makeExecutors()`: Schedules refresh tasks for all active PIDs
+2. `doRefresh()`: Calls `ITorqueService.getPIDValuesAsDouble()` and updates `TorqueData`
+3. `stopExecutors()`: Cancels all scheduled tasks
 
 #### `TorqueChart.kt` (147 lines)
 **Purpose:** Real-time line chart fragment using GraphView.
@@ -194,8 +194,8 @@ DataStore.data → collect → update gauges/displays/chart
 
 - Binds to `org.prowl.torque.remote.TorqueService`
 - Manages connection lifecycle
-- `runIfConnected()` — Safely execute Torque API calls
-- `addConnectCallback()` — Register connection listeners
+- `runIfConnected()`: Safely execute Torque API calls
+- `addConnectCallback()`: Register connection listeners
 
 #### `TorqueServiceWrapper.kt` (117 lines)
 **Purpose:** IPC bridge to Torque Pro for the settings app.
@@ -208,12 +208,12 @@ DataStore.data → collect → update gauges/displays/chart
 **Purpose:** Data Binding adapters for custom view attributes.
 
 Custom `@BindingAdapter` functions:
-- `setConstraintTopToBottomOf()` — Dynamic constraint changes
-- `setBackground()` — Sets dial background from theme
-- `wholeNumbers()` — Toggles integer/decimal display
-- `setMinMax()` — Sets gauge min/max speed
-- `bitmapOrResource()` — Sets image from bitmap or resource
-- `reversed()` — Reverses child order in LinearLayout
+- `setConstraintTopToBottomOf()`: Dynamic constraint changes
+- `setBackground()`: Sets dial background from theme
+- `wholeNumbers()`: Toggles integer/decimal display
+- `setMinMax()`: Sets gauge min/max speed
+- `bitmapOrResource()`: Sets image from bitmap or resource
+- `reversed()`: Reverses child order in LinearLayout
 
 #### `CreditsFragment.kt` (32 lines)
 **Purpose:** Credits/about screen with links to GitHub, PayPal, and translation.
@@ -273,8 +273,8 @@ Shows color, label, and current value for each charted PID.
 **Purpose:** ViewModel for sharing state between settings fragments.
 
 - `selectedFont` → `typefaceLiveData` (FontRes → Typeface)
-- `chartVisible` — Whether chart mode is active
-- `minMaxBelow` — Whether min/max is below gauge
+- `chartVisible`: Whether chart mode is active
+- `minMaxBelow`: Whether min/max is below gauge
 
 #### `SettingsDashboard.kt` (120 lines)
 **Purpose:** Per-dashboard settings screen.
@@ -415,17 +415,17 @@ Defines `AppTheme` composable with light and dark color schemes.
 ### Fonts (`res/font/`)
 
 11 custom fonts matching car brand aesthetics:
-- `digital.ttf` — 7-segment display
-- `vwtextcarui_regular.ttf` — Volkswagen CarUI
-- `vwthesis_mib_regular.ttf` — Volkswagen Thesis
-- `vw_digit_reg.otf` — VW Digit
-- `seat_metastyle_monodigit_regular.ttf` — Seat
-- `auditypedisplayhigh.ttf` — Audi Virtual Cockpit
-- `frutiger.otf` — Frutiger
-- `skoda.ttf` — Skoda
-- `larabie.ttf` — Larabie
-- `unitedsans.otf` — Ford (United Sans)
-- `ev.otf` — Electro Vehicle
+- `digital.ttf`: 7-segment display
+- `vwtextcarui_regular.ttf`: Volkswagen CarUI
+- `vwthesis_mib_regular.ttf`: Volkswagen Thesis
+- `vw_digit_reg.otf`: VW Digit
+- `seat_metastyle_monodigit_regular.ttf`: Seat
+- `auditypedisplayhigh.ttf`: Audi Virtual Cockpit
+- `frutiger.otf`: Frutiger
+- `skoda.ttf`: Skoda
+- `larabie.ttf`: Larabie
+- `unitedsans.otf`: Ford (United Sans)
+- `ev.otf`: Electro Vehicle
 
 ---
 
@@ -469,8 +469,8 @@ project(':speedviewlib').projectDir = new File(rootDir, 'lib/speedviewlib/speedv
 ## External Dependencies
 
 ### Binary Dependencies
-- `lib/aauto.aar` — Android Auto SDK (not available on Maven)
-- `lib/speedviewlib/` — Speedometer/gauge library (git submodule)
+- `lib/aauto.aar`: Android Auto SDK (not available on Maven)
+- `lib/speedviewlib/`: Speedometer/gauge library (git submodule)
 
 ### Key Libraries
 | Library | Version | Purpose |
@@ -483,7 +483,7 @@ project(':speedviewlib').projectDir = new File(rootDir, 'lib/speedviewlib/speedv
 | `Protobuf Java Util` | 3.25.1 | Protocol Buffers |
 | `DataStore` | 1.1.1 | Preferences storage |
 | `Compose BOM` | 2023.10.01 | Jetpack Compose |
-| `Material3` | — | Material Design 3 |
+| `Material3` |: | Material Design 3 |
 | `ColorPicker` | 3.1.0 | Color picker dialog |
 | `rotate-layout` | 3.0.0 | Layout rotation |
 | `compose-reorderable` | 0.9.6 | Reorderable lists |

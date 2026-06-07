@@ -1,4 +1,4 @@
-# AA Torque - Honda Elevate (2025) Guide 🇮🇳🚗
+# AA Torque - Honda Elevate (2025) Guide
 
 Everything you need to know about using AA Torque with your 2025 Honda Elevate in India.
 
@@ -82,10 +82,10 @@ AA Torque works via **wired Android Auto** (USB cable from phone to car's USB po
    - Available on Amazon.in (may ship from abroad)
 
 **What to Look For:**
-- ✅ ELM327 chipset (or compatible)
-- ✅ Bluetooth 2.0+ (for older phones) or Bluetooth 4.0+ (BLE)
-- ✅ Low power consumption
-- ✅ Compatible with Torque Pro
+-  ELM327 chipset (or compatible)
+-  Bluetooth 2.0+ (for older phones) or Bluetooth 4.0+ (BLE)
+-  Low power consumption
+-  Compatible with Torque Pro
 
 ---
 
@@ -217,7 +217,7 @@ Unit: kPa
 
 **Screen 1: Driving**
 - Left: RPM (`torque_0c,0`)
-- Center: Speed (`torque_0d,0`) — High visibility mode
+- Center: Speed (`torque_0d,0`): High visibility mode
 - Right: Throttle (`torque_11,0`)
 - Display 1: Coolant Temp
 - Display 2: Fuel Level
@@ -237,16 +237,16 @@ Unit: kPa
 
 Since Honda doesn't have a VAG-style virtual cockpit, here are good generic options:
 
-1. **Electro Vehicle** — Clean, modern, works well on any car
-2. **Dark** — Minimal, easy on eyes at night
-3. **Minimalistic** — Clean look without brand styling
-4. **BMW** — Sporty look that works for any car
+1. **Electro Vehicle**: Clean, modern, works well on any car
+2. **Dark**: Minimal, easy on eyes at night
+3. **Minimalistic**: Clean look without brand styling
+4. **BMW**: Sporty look that works for any car
 
 ### Best Fonts for Readability
 
-1. **7 Segment Display** — Classic dashboard look, very readable
-2. **Electro Vehicle** — Modern, clean
-3. **Frutiger** — Professional, easy to read
+1. **7 Segment Display**: Classic dashboard look, very readable
+2. **Electro Vehicle**: Modern, clean
+3. **Frutiger**: Professional, easy to read
 
 ### Layout Tips for 8" Screen
 
@@ -276,14 +276,14 @@ Since Honda doesn't have a VAG-style virtual cockpit, here are good generic opti
 
 - Use a **good quality USB cable** (data + charge)
 - Avoid cheap cables that cause connection drops
-- Keep your phone charged — AA Torque uses battery
+- Keep your phone charged: AA Torque uses battery
 - Consider a **USB Y-cable** if your car's USB port doesn't provide enough power
 
 ### Network Considerations
 
-- AA Torque works **offline** — no internet needed
+- AA Torque works **offline**: no internet needed
 - Only needed for: initial install, update checks, crash reports
-- Crash reports go to email (ACRA) — can be disabled if on limited data
+- Crash reports go to email (ACRA): can be disabled if on limited data
 
 ### Hindi/Regional Language
 
@@ -293,14 +293,14 @@ Since Honda doesn't have a VAG-style virtual cockpit, here are good generic opti
 
 ### Insurance & Warranty
 
-- **OBD2 adapters are safe** — they only read data, don't modify anything
-- **No warranty voiding** — standard OBD2 diagnostic port
+- **OBD2 adapters are safe**: they only read data, don't modify anything
+- **No warranty voiding**: standard OBD2 diagnostic port
 - **Insurance:** Using an OBD2 reader doesn't affect insurance
 
 ### Theft Prevention
 
 - Remove OBD2 adapter when parking in unfamiliar areas
-- Some adapters have low power draw — remove if parking for days
+- Some adapters have low power draw: remove if parking for days
 - The adapter itself is small and can be hidden
 
 ---
@@ -310,10 +310,10 @@ Since Honda doesn't have a VAG-style virtual cockpit, here are good generic opti
 ### "Unable to connect to Torque plugin service"
 
 **Common causes in India:**
-1. Cheap ELM327 adapter — try a better quality one
-2. Phone Bluetooth issues — restart Bluetooth
-3. Torque Pro not running — open Torque first
-4. Car ignition not ON — turn ignition to ON position
+1. Cheap ELM327 adapter: try a better quality one
+2. Phone Bluetooth issues: restart Bluetooth
+3. Torque Pro not running: open Torque first
+4. Car ignition not ON: turn ignition to ON position
 
 ### Frequent Disconnections
 
@@ -321,7 +321,7 @@ Since Honda doesn't have a VAG-style virtual cockpit, here are good generic opti
 2. Try a different USB port in the car
 3. Disable battery optimization for AA Torque:
    - Settings → Apps → AA Torque → Battery → Unrestricted
-4. Keep phone cool — Indian heat can cause throttling
+4. Keep phone cool: Indian heat can cause throttling
 
 ### "No data" or Stuck Values
 
@@ -329,7 +329,7 @@ Since Honda doesn't have a VAG-style virtual cockpit, here are good generic opti
 2. Restart Torque Pro
 3. Restart AA Torque
 4. Check OBD2 adapter is properly plugged in
-5. Some Honda ECUs take longer to respond — wait 30 seconds
+5. Some Honda ECUs take longer to respond: wait 30 seconds
 
 ### App Not Appearing in Android Auto
 

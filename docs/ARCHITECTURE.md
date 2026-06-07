@@ -20,7 +20,7 @@ This document explains the complete architecture of the AA Torque app, how compo
 
 ## High-Level Overview
 
-AA Torque is an **Android Auto plugin app** that displays real-time vehicle data from an OBD2 adapter on your car's head unit. It's a **companion app to Torque Pro** — it doesn't read OBD2 data directly. Instead, it communicates with Torque Pro via Android's IPC (Inter-Process Communication) system using AIDL (Android Interface Definition Language).
+AA Torque is an **Android Auto plugin app** that displays real-time vehicle data from an OBD2 adapter on your car's head unit. It's a **companion app to Torque Pro**: it doesn't read OBD2 data directly. Instead, it communicates with Torque Pro via Android's IPC (Inter-Process Communication) system using AIDL (Android Interface Definition Language).
 
 ```
 ┌─────────────────┐     ┌──────────────┐     ┌─────────────────┐
@@ -112,7 +112,7 @@ aa-torque/
 
 ## Core Components
 
-### 1. `CarService.java` — Android Auto Entry Point
+### 1. `CarService.java`: Android Auto Entry Point
 
 ```java
 public class CarService extends CarActivityService {
@@ -124,7 +124,7 @@ public class CarService extends CarActivityService {
 
 This is the **entry point** registered in AndroidManifest.xml. Android Auto calls this service to start the app on the car display. It returns `MainCarActivity` which hosts all the fragments.
 
-### 2. `MainCarActivity.kt` — Car UI Host
+### 2. `MainCarActivity.kt`: Car UI Host
 
 - Extends `CarActivity` (from Android Auto SDK)
 - Manages fragment switching (Dashboard, Credits, Stopwatch)
@@ -132,32 +132,32 @@ This is the **entry point** registered in AndroidManifest.xml. Android Auto call
 - Manages theme changes at runtime (recreates activity when theme changes)
 - Handles keyboard events (DPAD_CENTER for chart toggle)
 
-### 3. `DashboardFragment.kt` — Main Dashboard
+### 3. `DashboardFragment.kt`: Main Dashboard
 
 This is the **heart of the app**. It:
 
-- Hosts **3 gauge fragments** (left, center, right) — `TorqueGauge`
-- Hosts **4 text display fragments** — `TorqueDisplay`
-- Hosts a **chart fragment** — `TorqueChart`
+- Hosts **3 gauge fragments** (left, center, right): `TorqueGauge`
+- Hosts **4 text display fragments**: `TorqueDisplay`
+- Hosts a **chart fragment**: `TorqueChart`
 - Manages **screen switching** (up to 10 dashboards with swipe/rotary)
 - Manages **album art background** from media sessions
 - Observes user preferences via DataStore and updates all UI components
 - Manages gauge opacity, blur effects, color filters
 
-### 4. `TorqueService.kt` — IPC Bridge to Torque Pro
+### 4. `TorqueService.kt`: IPC Bridge to Torque Pro
 
 - Binds to Torque Pro's remote service via AIDL
 - Manages the connection lifecycle
 - Provides `runIfConnected()` to safely execute Torque API calls
 - Handles disconnection and reconnection
 
-### 5. `TorqueServiceWrapper.kt` — Settings-Side IPC Bridge
+### 5. `TorqueServiceWrapper.kt`: Settings-Side IPC Bridge
 
 - Similar to `TorqueService.kt` but used in the **Settings app** (not car display)
 - Loads PID information (names, units, ranges) from Torque
 - Used by `SettingsDashboard` and `SettingsPIDFragment` to populate PID lists
 
-### 6. `TorqueRefresher.kt` — Data Polling Engine
+### 6. `TorqueRefresher.kt`: Data Polling Engine
 
 - Manages a `ScheduledThreadPoolExecutor` with 7 threads
 - Polls each configured PID every 300ms (`REFRESH_INTERVAL`)
@@ -165,7 +165,7 @@ This is the **heart of the app**. It:
 - Manages connection status flow (`CONNECTING_TORQUE` → `CONNECTING_ECU` → `CONNECTED`)
 - Caches `TorqueData` objects per screen to avoid unnecessary rebuilds
 
-### 7. `TorqueData.kt` — PID Data Model
+### 7. `TorqueData.kt`: PID Data Model
 
 Each displayable item has a `TorqueData` instance that:
 
@@ -174,7 +174,7 @@ Each displayable item has a `TorqueData` instance that:
 - Manages alarm states (color changes based on thresholds)
 - Formats numbers with appropriate precision
 
-### 8. `TorqueGauge.kt` — Gauge Fragment
+### 8. `TorqueGauge.kt`: Gauge Fragment
 
 - Displays a speedometer-style gauge using `TorqueSpeedometer` (custom)
 - Supports:
@@ -184,13 +184,13 @@ Each displayable item has a `TorqueData` instance that:
   - Custom dial backgrounds per theme
   - Alarm color overlays
 
-### 9. `TorqueDisplay.kt` — Text Display Fragment
+### 9. `TorqueDisplay.kt`: Text Display Fragment
 
 - Shows a single PID value as text with optional icon/label
 - Used for secondary data points below/around the gauges
 - Supports alarm color changes
 
-### 10. `TorqueChart.kt` — Line Chart Fragment
+### 10. `TorqueChart.kt`: Line Chart Fragment
 
 - Real-time line chart using GraphView library
 - Plots up to 3 PID values over time (22 seconds window)
@@ -205,8 +205,8 @@ Each displayable item has a `TorqueData` instance that:
 
 AA Torque has **two distinct settings interfaces**:
 
-1. **Phone Settings App** (`SettingsActivity`) — Runs on the phone
-2. **Car Dashboard** (managed by `DashboardFragment`) — Runs on the car display
+1. **Phone Settings App** (`SettingsActivity`): Runs on the phone
+2. **Car Dashboard** (managed by `DashboardFragment`): Runs on the car display
 
 ### Data Persistence: Protobuf + DataStore
 
@@ -219,15 +219,15 @@ user_prefs.proto  →  UserPreference class  →  DataStore<UserPreference>
 ```
 
 The `UserPreference` protobuf message contains:
-- `screens` — Array of Screen objects (up to 10 dashboards)
-- `selectedTheme` — Theme name string
-- `selectedFont` — Font name string
-- `selectedBackground` — Background drawable name
-- `centerGaugeLarge` — Boolean for center gauge sizing
-- `showChart` — Boolean for chart mode
-- `albumArt` — Boolean for media background
-- `opacity`, `blurArt`, `darkenArt` — Integers (0-100)
-- `currentScreen` — Currently active dashboard index
+- `screens`: Array of Screen objects (up to 10 dashboards)
+- `selectedTheme`: Theme name string
+- `selectedFont`: Font name string
+- `selectedBackground`: Background drawable name
+- `centerGaugeLarge`: Boolean for center gauge sizing
+- `showChart`: Boolean for chart mode
+- `albumArt`: Boolean for media background
+- `opacity`, `blurArt`, `darkenArt`: Integers (0-100)
+- `currentScreen`: Currently active dashboard index
 
 ### Preference Flow
 
@@ -302,13 +302,13 @@ styles.xml defines theme styles (e.g., AppTheme.Volkswagen)
 
 The app uses custom attributes defined in `attrs.xml`:
 
-- `themedNeedle` — Needle drawable
-- `themedNeedleColor` — Needle color
-- `themedDialBackground` — Dial with marks
-- `themedEmptyDialBackground` — Dial without marks
-- `themedBlankDialBackground` — Plain dial
-- `themedCarBackground` — App background
-- `themedStopWatchBackground` — Stopwatch background
+- `themedNeedle`: Needle drawable
+- `themedNeedleColor`: Needle color
+- `themedDialBackground`: Dial with marks
+- `themedEmptyDialBackground`: Dial without marks
+- `themedBlankDialBackground`: Plain dial
+- `themedCarBackground`: App background
+- `themedStopWatchBackground`: Stopwatch background
 
 ### Adding a New Theme
 
@@ -406,9 +406,9 @@ TorqueService.startTorque()
 ### PID Naming Convention
 
 PIDs are identified as `torque_<hex_id>`:
-- `torque_0c,0` — Engine RPM (PID 0x0C)
-- `torque_0d,0` — Vehicle Speed (PID 0x0D)
-- `torque_05,0` — Coolant Temperature (PID 0x05)
+- `torque_0c,0`: Engine RPM (PID 0x0C)
+- `torque_0d,0`: Vehicle Speed (PID 0x0D)
+- `torque_05,0`: Coolant Temperature (PID 0x05)
 
 ---
 
@@ -428,7 +428,7 @@ PIDs are identified as `torque_<hex_id>`:
 
 ---
 
-## Honda Elevate Notes 🚗
+## Honda Elevate Notes
 
 Your 2025 Honda Elevate uses Honda's infotainment system. Android Auto support depends on:
 
