@@ -1,0 +1,20 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+    <!-- Background circle -->
+    <path
+        android:pathData="M50,50 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"
+        android:fillColor="#1A1A2E" />
+    <!-- Red accent ring -->
+    <path
+        android:pathData="M50,50 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"
+        android:strokeColor="#E40521"
+        android:strokeWidth="3"
+        android:fillColor="#00000000" />
+    <!-- Honda H letterform -->
+    <path
+        android:pathData="M30,28 L30,72 L38,72 L38,52 L62,52 L62,72 L70,72 L70,28 L62,28 L62,44 L38,44 L38,28 Z"
+        android:fillColor="#E40521" />
+</vector>

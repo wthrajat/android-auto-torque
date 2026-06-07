@@ -1,0 +1,17 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+    <!-- Honda-style sleek red needle - thin, elegant, pointing up at 12 o'clock -->
+    <path
+        android:pathData="M100,10 L90,95 L100,100 L110,95 Z"
+        android:fillColor="#E40521" />
+    <!-- Center hub -->
+    <path
+        android:pathData="M100,88 m-8,0 a8,8 0 1,1 16,0 a8,8 0 1,1 -16,0"
+        android:fillColor="#E40521" />
+    <path
+        android:pathData="M100,88 m-4,0 a4,4 0 1,1 8,0 a4,4 0 1,1 -8,0"
+        android:fillColor="#1A1A2E" />
+</vector>

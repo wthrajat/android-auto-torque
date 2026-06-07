@@ -1,0 +1,22 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="400dp"
+    android:height="400dp"
+    android:viewportWidth="400"
+    android:viewportHeight="400">
+    <!-- Honda stopwatch - no tick marks, speedviewlib handles them -->
+    <path
+        android:pathData="M200,200 m-185,0 a185,185 0 1,1 370,0 a185,185 0 1,1 -370,0"
+        android:strokeColor="#2A2A3E"
+        android:strokeWidth="2"
+        android:fillColor="#00000000" />
+    <path
+        android:pathData="M200,200 m-165,0 a165,165 0 1,1 330,0 a165,165 0 1,1 -330,0"
+        android:strokeColor="#1E1E30"
+        android:strokeWidth="1"
+        android:fillColor="#00000000" />
+    <!-- Honda red accent at 12 o'clock -->
+    <path
+        android:pathData="M200,25 L200,42"
+        android:strokeColor="#E40521"
+        android:strokeWidth="3" />
+</vector>

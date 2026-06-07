@@ -503,6 +503,33 @@
     </style>
 
 
+    <style name="AppTheme.Honda" parent="AppTheme">
+        <item name="themedCarBackground">@drawable/background_incar_honda</item>
+        <item name="themedDialBackground">@drawable/dial_background_honda</item>
+        <item name="themedEmptyDialBackground">@drawable/dial_background_empty_honda</item>
+        <item name="themedBlankDialBackground">@drawable/dial_background_blank_honda</item>
+        <item name="themedNeedle">@drawable/needle_honda</item>
+        <item name="themedStopWatchBackground">@drawable/sw_background_honda</item>
+        <item name="themedNeedleColor">@color/hondared</item>
+        <item name="sv_withIndicatorLight">true</item>
+        <item name="sv_indicatorLightColor">#44E40521</item>
+        <item name="sv_indicator">HalfLineIndicator</item>
+        <item name="sv_indicatorColor">#FFE40521</item>
+        <item name="sv_indicatorWidth">3dp</item>
+        <item name="sv_tickPadding">15dp</item>
+        <item name="sv_tickRotation">false</item>
+        <item name="sv_speedTextPadding">50dp</item>
+        <item name="sv_withTremble">false</item>
+        <item name="sv_speedTextColor">@android:color/white</item>
+        <item name="sv_speedTextSize">32sp</item>
+        <item name="sv_unitTextColor">@android:color/white</item>
+        <item name="sv_speedTextPosition">CENTER</item>
+        <item name="sv_unitTextSize">20sp</item>
+        <item name="sv_textColor">@android:color/transparent</item>
+        <item name="sv_textSize">12sp</item>
+        <item name="sv_unitSpeedInterval">4dp</item>
+    </style>
+
     <style name="AppTheme.ProgressBar.Horizontal" parent="Widget.AppCompat.ProgressBar.Horizontal">
         <item name="android:progressDrawable">@drawable/progress_vertical_material_car</item>
         <item name="android:minWidth">@dimen/progress_bar_height_material_car</item>
